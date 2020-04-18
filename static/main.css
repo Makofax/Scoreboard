@@ -21,6 +21,7 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
+    padding-left: 20px;
 }
 
 .Remove {
@@ -125,6 +126,11 @@ body {
     flex: 1 1 auto;
     flex-direction: row-reverse;
     display: flex;
+    padding-left: 10px;
+}
+
+.avatar {
+    padding-right: 5px;
 }
 
 .error {

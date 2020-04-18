@@ -158,13 +158,13 @@ $(document).ready(function() {
                         name: {
                             required: true,
                             lettersonly: true,
-                            maxlength: 12
+                            maxlength: 12 //max length for name
                         },
                         points: {
                             required: true,
                             nowhitespace: true,
                             digits: true,
-                            maxlength: 4
+                            maxlength: 4 //max length for points
                         }
                     },
                     messages: {
