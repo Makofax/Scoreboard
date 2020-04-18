@@ -1,0 +1,133 @@
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+}
+
+.name {
+    flex: 23 1 auto;
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.playerName {
+    flex: 19 1 auto;
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.Remove {
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.container {
+    max-width: 1140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.playerScore {
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.players {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+    padding: 5px 10px;
+}
+
+.playerHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+    padding: 10px;
+    background: coral;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.playerContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    width: 450px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.score {
+    font-size: 17px;
+}
+
+.playerContainer>.players:nth-of-type(even) {
+    background: #fafafa
+}
+
+.playerContainer>.players:nth-of-type(odd) {
+    background: #eee
+}
+
+#containerGamePlayers .players .name {
+    flex: 1 1 auto;
+    font-size: 13px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#containerGamePlayers .players .score {
+    flex: 1 1 auto;
+    font-size: 13px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.add {
+    padding: 5px 10px;
+    align-self: end;
+    display: flex;
+}
+
+.edit {
+    flex: 1 1 auto;
+    flex-direction: row-reverse;
+    display: flex;
+}
+
+.error {
+    color: red;
+}
+
+.valid {
+    color: green;
+}
