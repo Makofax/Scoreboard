@@ -24,7 +24,7 @@ body {
     padding-left: 20px;
 }
 
-.Remove {
+.remove {
     font-size: 20px;
     font-weight: 700;
     overflow: hidden;
@@ -98,15 +98,7 @@ body {
     background: #eee
 }
 
-#containerGamePlayers .players .name {
-    flex: 1 1 auto;
-    font-size: 13px;
-    font-weight: 700;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
+#containerGamePlayers .players .name,
 #containerGamePlayers .players .score {
     flex: 1 1 auto;
     font-size: 13px;
@@ -141,7 +133,8 @@ body {
     color: green;
 }
 
-p {
-    margin-top: 0;
-    margin-bottom: 0rem;
+@media (max-width: 480px) {
+    .playerContainer {
+        width: inherit;
+    }
 }
