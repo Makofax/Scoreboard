@@ -28,7 +28,6 @@
         <div class="playerHeader">
             <div class="playerName">Name</div>
             <div class="playerScore">Score</div>
-            <!--<div class="playerRank">Rank</div>-->
             <div class="remove" style="display: none;">Remove</div>
         </div>
         {%for j in range(8)%}
@@ -36,7 +35,6 @@
             <div class="avatar"><i class="fa fa-user" style="font-size:25px;"></i></div>
             <div class="name"></div>
             <div class="score"></div>
-            <!--<div class="rank"></div>-->
             <div class="edit remove-button " id="edit {{ loop.index }}" style="display: none;"><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div>
         </div>
         {% endfor %}

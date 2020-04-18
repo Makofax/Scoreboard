@@ -135,7 +135,7 @@ $(document).ready(function() {
     });
     //add and remove button show if you are admin
     $('.admin').click(function() {
-        $(".Remove , .edit , .add-button").toggle(this.checked);
+        $(".remove , .edit , .add-button").toggle(this.checked);
     });
 
     $(".playerContainer").on('click', '.add-button', function() {
@@ -193,7 +193,7 @@ $(document).ready(function() {
                         playerAvatar.push(colorInRGB);
 
                         //generates new player with given information
-                        var newPlayer = $('<div class="players defPlayer8" id="player 8 "><div class="avatar"><i class="fa fa-user" style="font-size:25px;color:rgb(189, 17, 12)"></i></div><div class="name">Charles</div><div class="score">14</div><!--<div class="rank"></div>--><div class="edit remove-button " id="edit 8" "><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div></div>');
+                        var newPlayer = $('<div class="players defPlayer8" id="player 8 "><div class="avatar"><i class="fa fa-user" style="font-size:25px;color:rgb(189, 17, 12)"></i></div><div class="name">Charles</div><div class="score">14</div><div class="edit remove-button " id="edit 8" "><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div></div>');
                         newPlayer.attr({ id: `player ${lastChild+1}`, class: `players defPlayer${lastChild+1}` }).insertBefore($(".playerContainer").find(">:last-child"));
                         $(`[id='player ${lastChild+1}'] > .name`).html(nameToUppercase)
                         $(`[id='player ${lastChild+1}'] > .score`).html(points.val())
