@@ -157,24 +157,28 @@ $(document).ready(function() {
                     rules: {
                         name: {
                             required: true,
-                            lettersonly: true
+                            lettersonly: true,
+                            maxlength: 12
                         },
-                        number: {
+                        points: {
                             required: true,
                             nowhitespace: true,
-                            digits: true
+                            digits: true,
+                            maxlength: 4
                         }
                     },
                     messages: {
-                        blinkStart: {
-                            required: "Off time is required",
-                            lettersonly: "Letters only"
+                        name: {
+                            required: "name is required",
+                            lettersonly: "only Letters allowed",
+                            maxlength: "too many characters"
                         },
-                        blinkEnd: {
-                            required: "On time is required",
-                            nowhitespace: "No spaces allowed",
-                            digits: "Only numbers allowed"
-                        },
+                        points: {
+                            required: "point is required",
+                            nowhitespace: "no spaces allowed",
+                            digits: "only numbers allowed",
+                            maxlength: "too many characters"
+                        }
                     }
                 });
             },
