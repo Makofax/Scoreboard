@@ -20,6 +20,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
 .Remove {
@@ -28,6 +29,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding-left: 10px;
 }
 
 .container {
@@ -44,6 +46,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
 .players {
@@ -130,4 +133,9 @@ body {
 
 .valid {
     color: green;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0rem;
 }

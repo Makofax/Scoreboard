@@ -97,7 +97,7 @@ $(document).ready(function() {
         });
 
         //generates ascending or descending icon
-        boolToggle ? $(".playerScore").html('Score <i class="fa fa-sort-desc"></i>') : $(".playerScore").html('Score <i class="fa fa-sort-asc"></i>')
+        boolToggle ? $(".playerScore").html('Score<i class="fa fa-sort-desc"></i>') : $(".playerScore").html('Score<i class="fa fa-sort-asc"></i>')
         $(".playerName").html("Name");
 
         //insert sorted elements after header
@@ -106,7 +106,8 @@ $(document).ready(function() {
         Firstchild.insertBefore(numericalOrderedDivs[0]);
 
         //insert back add button
-        $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square"></i></button>');
+        !$('input[type="checkbox"]:checkbox:checked').length > 0 ? $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') : $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
+
     });
     //sorts player by name
     $(".playerContainer").on('click', '.playerName', function() {
@@ -128,7 +129,9 @@ $(document).ready(function() {
         $(".playerContainer  ").html(alphabeticallyOrderedDivs);
         Firstchild.insertBefore(alphabeticallyOrderedDivs[0]);
         //insert back add button
-        $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px; display: none;">Add <i class="fa fa-pencil-square" ></i></button>');
+        !$('input[type="checkbox"]:checkbox:checked').length > 0 ? $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') : $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
+
+
     });
     //add and remove button show if you are admin
     $('.admin').click(function() {
