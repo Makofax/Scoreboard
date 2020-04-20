@@ -13,14 +13,13 @@ body {
     text-overflow: ellipsis;
 }
 
-.playerName {
+.player-name {
     flex: 19 1 auto;
     font-size: 20px;
     font-weight: 700;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    cursor: pointer;
     padding-left: 20px;
 }
 
@@ -41,7 +40,7 @@ body {
     flex-direction: column;
 }
 
-.playerScore {
+.player-score {
     font-size: 20px;
     font-weight: 700;
     overflow: hidden;
@@ -60,7 +59,7 @@ body {
     padding: 5px 10px;
 }
 
-.playerHeader {
+.player-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -73,7 +72,7 @@ body {
     border-top-right-radius: 10px;
 }
 
-.playerContainer {
+.player-container {
     display: flex;
     flex-direction: column;
     align-content: flex-start;
@@ -90,11 +89,11 @@ body {
     font-size: 17px;
 }
 
-.playerContainer>.players:nth-of-type(even) {
+.player-container>.players:nth-of-type(even) {
     background: #fafafa
 }
 
-.playerContainer>.players:nth-of-type(odd) {
+.player-container>.players:nth-of-type(odd) {
     background: #eee
 }
 
@@ -133,8 +132,13 @@ body {
     color: green;
 }
 
+.lable-name {
+    display: inline;
+    cursor: pointer;
+}
+
 @media (max-width: 480px) {
-    .playerContainer {
+    .player-container {
         width: inherit;
     }
 }

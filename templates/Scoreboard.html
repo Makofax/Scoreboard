@@ -1,14 +1,36 @@
 {% extends "layout.html" %} {% block title %}scoreBoard{% endblock %} {% block content %}
 <div class="container">
+
+    <div><input type="checkbox" class="admin" name="admin"><label for="admin"> Are you admin?</label></div>
+    <div class="player-container">
+        <div class="player-header">
+            <div class="player-name">
+                <div class="lable-name">Name</div>
+            </div>
+            <div class="player-score">Score</div>
+            <div class="remove" style="display: none;">Remove</div>
+        </div>
+        {%for j in range(8)%}
+        <div class="players def-player{{ loop.index }}" id="player {{ loop.index }} ">
+            <div class="avatar"><i class="fa fa-user" style="font-size:25px;"></i></div>
+            <div class="name"></div>
+            <div class="score"></div>
+            <div class="edit remove-button " id="edit {{ loop.index }}" style="display: none;"><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div>
+        </div>
+        {% endfor %}
+        <div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square"></i></button>
+        </div>
+    </div>
+
     <div id="dialog-form" style="display: none;" title="New Player">
-        <p class="validateTips">All form fields are required.</p>
+        <p class="validate-tips">All form fields are required.</p>
         <form id="form-dialog">
             <fieldset>
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" pattern="^[\w]*$" title="Letters only"><br>
                 <label for="points">Points</label>
                 <input type="text" name="points" id="points" class="text ui-widget-content ui-corner-all" pattern="^[\d]*$" title="Numbers only">
-                <div id="callback_example" class="example">
+                <div id="color-wheel" class="example">
                     <div>
                         <div style="float:left; width:100%; margin-bottom:20px">
                             <div class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
@@ -23,25 +45,6 @@
             </fieldset>
         </form>
     </div>
-    <div><input type="checkbox" class="admin" name="admin"><label for="admin"> Are you admin?</label></div>
-    <div class="playerContainer">
-        <div class="playerHeader">
-            <div class="playerName">Name</div>
-            <div class="playerScore">Score</div>
-            <div class="remove" style="display: none;">Remove</div>
-        </div>
-        {%for j in range(8)%}
-        <div class="players defPlayer{{ loop.index }}" id="player {{ loop.index }} ">
-            <div class="avatar"><i class="fa fa-user" style="font-size:25px;"></i></div>
-            <div class="name"></div>
-            <div class="score"></div>
-            <div class="edit remove-button " id="edit {{ loop.index }}" style="display: none;"><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div>
-        </div>
-        {% endfor %}
-        <div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square"></i></button>
-        </div>
-    </div>
-
 
 
 </div>

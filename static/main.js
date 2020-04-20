@@ -2,32 +2,32 @@ function generatePlayers(players, playerScore, playerAvatar) {
     //checks if player exisists, if not skip generating player
     for (let index = 8; index <= players.length; index++) {
         if (players[index] == " ") { continue; }
-        $(".playerContainer >:nth-last-child(2)").clone().attr({
+        $(".player-container >:nth-last-child(2)").clone().attr({
             id: `player ${index +1}`,
-            class: `players defPlayer${index +1}`
-        }).insertBefore($(".playerContainer").find(">:last-child"));
-        $(`.playerContainer > [id='player ${index +1}'] `).children('div.edit').attr("id", `edit ${index +1}`);
+            class: `players def-player${index +1}`
+        }).insertBefore($(".player-container").find(">:last-child"));
+        $(`.player-container > [id='player ${index +1}'] `).children('div.edit').attr("id", `edit ${index +1}`);
     }
     for (var i = 0; i < players.length; i++) {
-        $(`.defPlayer${i+1} > .avatar`).html(`<i class="fa fa-user" style="font-size:25px;color:rgb(${playerAvatar[i][0]}, ${playerAvatar[i][1]}, ${playerAvatar[i][2]})"></i>`);
-        $(`.defPlayer${i+1} > .name`).html(players[i]);
-        $(`.defPlayer${i+1} > .score`).html(playerScore[i]);
+        $(`.def-player${i+1} > .avatar`).html(`<i class="fa fa-user" style="font-size:25px;color:rgb(${playerAvatar[i][0]}, ${playerAvatar[i][1]}, ${playerAvatar[i][2]})"></i>`);
+        $(`.def-player${i+1} > .name`).html(players[i]);
+        $(`.def-player${i+1} > .score`).html(playerScore[i]);
     }
 
 }
 
 function removePlayers(players, playerScore, playerAvatar) {
     //removes empty players if they dont exist
-    $('.playerContainer > .players').each(function() {
+    $('.player-container > .players').each(function() {
         if ($(this).children(`div.name`).is(':empty') || $(this).children(`div.name`).text() == " ") {
             $(this).children(`div.name`).parent().remove();
 
         }
     });
     //removes player entierly by clicking the corresponding remove button
-    $(".playerContainer").on('click', '.remove-button', function() {
+    $(".player-container").on('click', '.remove-button', function() {
         var value = ($(this).attr("id").split(" ")[1] * 1) - 1;
-        $(`.defPlayer${value+1}`).remove();
+        $(`.def-player${value+1}`).remove();
         var index = players.indexOf(players[value]);
         if (index !== -1) {
             players[index] = "";
@@ -35,16 +35,16 @@ function removePlayers(players, playerScore, playerAvatar) {
             playerAvatar[index] = "";
         }
         localStorage.setItem('players', JSON.stringify(players));
-        localStorage.setItem('playerScore', JSON.stringify(playerScore));
-        localStorage.setItem('playerAvatar', JSON.stringify(playerAvatar));
+        localStorage.setItem('player-score', JSON.stringify(playerScore));
+        localStorage.setItem('player-avatar', JSON.stringify(playerAvatar));
     });
 
 }
 //funciton for using the colorwheel
-function callback_example() {
-    var cw = Raphael.colorwheel($("#callback_example .colorwheel")[0], 150),
-        onchange_el = $("#callback_example .onchange"),
-        ondrag_el = $("#callback_example .ondrag");
+function colorPicker() {
+    var cw = Raphael.colorwheel($("#color-wheel .colorwheel")[0], 150),
+        onchange_el = $("#color-wheel .onchange"),
+        ondrag_el = $("#color-wheel .ondrag");
     cw.color("#00F");
     $("#RGBcolor").css('color', `rgb(${cw.color().r},${cw.color().g},${cw.color().b})`);
 
@@ -68,16 +68,16 @@ $(document).ready(function() {
     //default players that are generated
     var defaultPlayerNameArr = ["Jack", "David", "John", "Michael", "Robert", "William", "Joseph", "Charles"];
     var players = localStorage.getItem('players'),
-        playerScore = localStorage.getItem('playerScore'),
-        playerAvatar = localStorage.getItem('playerAvatar');
+        playerScore = localStorage.getItem('player-score'),
+        playerAvatar = localStorage.getItem('player-avatar');
 
     //checks if array exists, if not creates new one
     var players = (players) ? JSON.parse(players) : Array(8).fill().map((v, i) => defaultPlayerNameArr[i]),
         playerScore = (playerScore) ? JSON.parse(playerScore) : Array(8).fill().map((v, i) => 1 + Math.floor(Math.random() * 20)),
         playerAvatar = (playerAvatar) ? JSON.parse(playerAvatar) : Array(8).fill(null).map(() => Array(3).fill().map((v, i) => 1 + Math.floor(Math.random() * 255)));
     localStorage.setItem('players', JSON.stringify(players));
-    localStorage.setItem('playerScore', JSON.stringify(playerScore));
-    localStorage.setItem('playerAvatar', JSON.stringify(playerAvatar));
+    localStorage.setItem('player-score', JSON.stringify(playerScore));
+    localStorage.setItem('player-avatar', JSON.stringify(playerAvatar));
     generatePlayers(players, playerScore, playerAvatar);
 
     removePlayers(players, playerScore, playerAvatar);
@@ -85,7 +85,7 @@ $(document).ready(function() {
     var clicked;
     var boolToggle = true;
     //sorts player by points
-    $(".playerContainer").on('click', '.playerScore', function() {
+    $(".player-container").on('click', '.player-score', function() {
         boolToggle = !boolToggle;
 
         //compares each element and sorts based on points
@@ -97,39 +97,44 @@ $(document).ready(function() {
         });
 
         //generates ascending or descending icon
-        boolToggle ? $(".playerScore").html('Score<i class="fa fa-sort-desc"></i>') : $(".playerScore").html('Score<i class="fa fa-sort-asc"></i>')
-        $(".playerName").html("Name");
+        boolToggle ? $(".player-score").html('Score<i class="fa fa-sort-desc"></i>') : $(".player-score").html('Score<i class="fa fa-sort-asc"></i>')
+        $(".player-name").html('<div class="lable-name">Name</div>');
 
         //insert sorted elements after header
-        var Firstchild = $(".playerContainer").find(">:first-child")
-        $(".playerContainer  ").html(numericalOrderedDivs);
+        var Firstchild = $(".player-container").find(">:first-child")
+        $(".player-container  ").html(numericalOrderedDivs);
         Firstchild.insertBefore(numericalOrderedDivs[0]);
 
         //insert back add button
-        !$('input[type="checkbox"]:checkbox:checked').length > 0 ? $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') : $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
+        !$('input[type="checkbox"]:checkbox:checked').length > 0 ?
+            $(".player-container").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') :
+            $(".player-container").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
 
     });
     //sorts player by name
-    $(".playerContainer").on('click', '.playerName', function() {
+    $(".player-container").on('click', '.player-name', function() {
         boolToggle = !boolToggle;
 
         //compares each element and sorts based on points
         var alphabeticallyOrderedDivs = $(".players").sort(function(a, b) {
-            var inEquality = boolToggle ? $(a).find(".name").text() < $(b).find(".name").text() : $(a).find(".name").text() > $(b).find(".name").text();
+            var a = $(a).find(".name").text(),
+                b = $(b).find(".name").text(),
+                inEquality = boolToggle ? (a.localeCompare(b, false)) : (b.localeCompare(a, false));
             return inEquality;
-
         });
 
         //generates ascending or descending icon
-        boolToggle ? $(".playerName").html('Name <i class="fa fa-sort-asc"></i>') : $(".playerName").html('Name <i class="fa fa-sort-desc"></i>')
-        $(".playerScore").html("Score");
+        boolToggle ? $(".player-name").html('<div class="lable-name">Name</div><i class="fa fa-sort-desc"></i>') : $(".player-name").html('<div class="lable-name">Name</div><i class="fa fa-sort-asc"></i>')
+        $(".player-score").html("Score");
 
         //insert sorted elements after header
-        var Firstchild = $(".playerContainer").find(">:first-child")
-        $(".playerContainer  ").html(alphabeticallyOrderedDivs);
+        var Firstchild = $(".player-container").find(">:first-child")
+        $(".player-container  ").html(alphabeticallyOrderedDivs);
         Firstchild.insertBefore(alphabeticallyOrderedDivs[0]);
         //insert back add button
-        !$('input[type="checkbox"]:checkbox:checked').length > 0 ? $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') : $(".playerContainer").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
+        !$('input[type="checkbox"]:checkbox:checked').length > 0 ?
+            $(".player-container").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;display: none;">Add <i class="fa fa-pencil-square" ></i></button>') :
+            $(".player-container").append('<div class="add"><button type="button" class="add-button btn btn-sm btn-info" style="font-size:15px;">Add <i class="fa fa-pencil-square" ></i></button>');
 
 
     });
@@ -138,7 +143,7 @@ $(document).ready(function() {
         $(".remove , .edit , .add-button").toggle(this.checked);
     });
 
-    $(".playerContainer").on('click', '.add-button', function() {
+    $(".player-container").on('click', '.add-button', function() {
 
         var name = $("#name");
         var points = $("#points");
@@ -193,15 +198,15 @@ $(document).ready(function() {
                         playerAvatar.push(colorInRGB);
 
                         //generates new player with given information
-                        var newPlayer = $('<div class="players defPlayer8" id="player 8 "><div class="avatar"><i class="fa fa-user" style="font-size:25px;color:rgb(189, 17, 12)"></i></div><div class="name">Charles</div><div class="score">14</div><div class="edit remove-button " id="edit 8" "><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div></div>');
-                        newPlayer.attr({ id: `player ${lastChild+1}`, class: `players defPlayer${lastChild+1}` }).insertBefore($(".playerContainer").find(">:last-child"));
+                        var newPlayer = $('<div class="players def-player8" id="player 8 "><div class="avatar"><i class="fa fa-user" style="font-size:25px;color:rgb(189, 17, 12)"></i></div><div class="name">Charles</div><div class="score">14</div><div class="edit remove-button " id="edit 8" "><button type="button" class="btn btn-sm btn-info" style="font-size:10px">Remove <i class="fa fa-times-circle"></i></button></div></div>');
+                        newPlayer.attr({ id: `player ${lastChild+1}`, class: `players def-player${lastChild+1}` }).insertBefore($(".player-container").find(">:last-child"));
                         $(`[id='player ${lastChild+1}'] > .name`).html(nameToUppercase)
                         $(`[id='player ${lastChild+1}'] > .score`).html(points.val())
                         $(`[id='player ${lastChild+1}'] > .avatar`).html(`<i class="fa fa-user" style="font-size:25px;color:rgb(${colorInRGB[0]}, ${colorInRGB[1]}, ${colorInRGB[2]})"></i>`)
                         $(`[id='player ${lastChild+1}'] > .edit`).attr("id", `edit ${lastChild +1}`);
                         localStorage.setItem('players', JSON.stringify(players));
-                        localStorage.setItem('playerScore', JSON.stringify(playerScore));
-                        localStorage.setItem('playerAvatar', JSON.stringify(playerAvatar));
+                        localStorage.setItem('player-score', JSON.stringify(playerScore));
+                        localStorage.setItem('player-avatar', JSON.stringify(playerAvatar));
 
 
                         dialog.dialog("close");
@@ -218,7 +223,7 @@ $(document).ready(function() {
             event.preventDefault();
             dialog.dialog("close");
         });
-        callback_example();
+        colorPicker();
         dialog.dialog("open");
 
 
